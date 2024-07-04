@@ -1,11 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <script>
+    let num = 0;
+  </script>
 </head>
-<body>
-    <script src="./script.js"></script>
-</body>
+<html>
+  <body>
+    <button onclick="document.getElementById('demo').innerHTML = playZar()">Click Me</button>
+    <br />
+    Ett tärningspel där användaren ska kasta 1st tärning. Vid första kastet ska målet vara 1. Om 1
+    ej fås, ska man försöka igen. Hur många kast tar det för att komma upp i en stege, 1,2,3,4,5,6?
+    Antal kast måste räknas.
+ 
+    <p id="demo"></p>
+ 
+    <script>
+      function getRndInteger(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      }
+      function playZar() {
+        // how many attempts
+        let num = 0;
+        let min = 1;
+        // hold the next step in the ladder
+        let i = min;
+        let max = 6;
+        // generate integer until we have all the scores
+        while (i < max) {
+          let tar = getRndInteger(min, max);
+          // one more cast
+          num++;
+          // the current cast matches the next step
+          if (tar == i) {
+            // we have filled up the next step and need go on
+            i++;
+          }
+        }
+        return num;
+      }
+    </script>
+  </body>
 </html>
